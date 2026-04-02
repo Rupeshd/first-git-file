@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Rupesh Dahal</title>
+    <title> Quick Noter taker</title>
+
     <style>
         body {
-            font-family: system-ui;
+            font-family: system-ui, -apple-system;
             padding: 20px;
             background: #f4f4f4;
         }
+
         textarea {
             width: 95%;
             height: 60vh;
             font-size: 18px;
             padding: 15px;
         }
+
         button {
             padding: 12px 30px;
             font-size: 18px;
@@ -23,22 +25,19 @@
             color: white;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
-    <h1>📝Quick Note Taker Rupesh Dahal  </h1>
-    <textarea id="note" placeholder="Start typing your note..."></textarea>
+    <h1>
+        Quick Note taker
+    </h1>
+    <textarea id="note" placeholder="Start typing your note ..."></textarea>
     <br><br>
-    <button id="save">💾Save Note </button>
-    <p id="save_status" style="color : gray; font-size: 14px;"></p>
-    <div id="save_status" style="margin-top:10px; color:#666; font-size:0.9em;"></div>
+    <button id="save"> Save Note</button>
+    <div id="status" style="margin-top:10px; color: #666; font-size:0.9em;"></div>
     <script src="renderer.js"></script>
 </body>
 
 </html>
-
-
-
