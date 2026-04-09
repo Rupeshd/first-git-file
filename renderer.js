@@ -44,5 +44,15 @@ window.addEventListener('DOMContentLoaded', async () => {
         clearTimeout(debouncerTimer);
         debouncerTimer = setTimeout(autoSave, 5000);
     });
+
+    const saveAsBtn = document.getElementById('save-as');
+    saveAsBtn.addEventListener('click', async()=>{
+        if(XPathResult.success){
+            lastSaveedText = textarea.value;
+            statusEl.textContent = `Saved as ${result.filepath}`;
+        }else{
+            statusEl.textContent='Save as canclled.';
+        }
+    }) ;
 }
 );
