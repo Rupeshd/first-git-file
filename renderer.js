@@ -47,12 +47,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const saveAsBtn = document.getElementById('save-as');
     saveAsBtn.addEventListener('click', async()=>{
-        if(XPathResult.success){
+        const result = await window.electronAPI.saveAs(textarea.value);
+        if(result.success){
             lastSaveedText = textarea.value;
             statusEl.textContent = `Saved as ${result.filepath}`;
         }else{
             statusEl.textContent='Save as canclled.';
         }
     }) ;
-}
-);
+});
