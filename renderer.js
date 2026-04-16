@@ -49,10 +49,29 @@ window.addEventListener('DOMContentLoaded', async () => {
     saveAsBtn.addEventListener('click', async()=>{
         const result = await window.electronAPI.saveAs(textarea.value);
         if(result.success){
-            lastSaveedText = textarea.value;
+            lastSavedText = textarea.value;
             statusEl.textContent = `Saved as ${result.filepath}`;
         }else{
             statusEl.textContent='Save as canclled.';
         }
-    }) ;
+    });
+    const newNoteBtn = document.getElementById('new-note');
+    //IF there are no unsaved changes, just clear the textarea
+    newNoteBtn.addEventListener('click', async () => {
+        if(textarea.value === lastSavedText){
+            textarea.value = '';
+            lastSavedText = '';
+            statusEl.textContent = 'New note started.';
+            return;
+        }
+        // if there are unsaved changes, ask the user first 
+        const result = await window.electronAPI.newNote();
+        if(result.confirmed){
+            textarea.value='';
+            lastSavedText='';
+            statusEl.textContent = 'New note started';
+        }else{
+            statusEl.textContent = 'New note cancelled.';
+        }
+    });
 });
