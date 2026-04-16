@@ -74,4 +74,18 @@ window.addEventListener('DOMContentLoaded', async () => {
             statusEl.textContent = 'New note cancelled.';
         }
     });
+
+    const openFileBtn = document.getElementById('open-file');
+
+    openFileBtn.addEventListener('click', async()=>{
+        const result = await window.electronAPI.openFile();
+        if(result.success){
+            textarea.value = result.content;
+            lastSavedText = result.content;
+            currentFilePath = result.filePath;
+            statusEl.textContent = `Opened ${result.filepath}`;
+        }else{
+            statusEl.textContent = 'Open file cancelled.';
+        }
+    });
 });
