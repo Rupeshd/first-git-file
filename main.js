@@ -66,5 +66,19 @@ ipcMain.handle('new-note',async(event)=>{
         title:'Unsaved Changes',
         message:'You have unsaved changes. Start a new note anyway?'
     });
+
     return {confirmed: result.response === 0}; // true if 'Discard Changes' is clicked
+});
+
+ipcMain.handle('open-file', async (event)=> {
+    const result = await dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters :[{name: 'text files', extensions: ['txt']}]
+    });
+    if(result.canceled){
+        return {success: false};
+    }
+    const filePath = result.filePaths[0];
+    const content = fs.readFileSync(filePath, 'utf-8');
+    return {success: true, content, filePath};
 });
